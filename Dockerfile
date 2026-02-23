@@ -1,7 +1,8 @@
 # Step 1: Build stage
-FROM golang:1.22-alpine AS builder
+FROM golang:1.24-alpine AS builder
 WORKDIR /app
 COPY . .
+ENV GOTOOLCHAIN=auto
 RUN go mod download
 # Trỏ đúng vào file main.go trong thư mục cmd/router
 RUN go build -o main ./cmd/main.go 
