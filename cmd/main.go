@@ -4,7 +4,9 @@ import (
 	"flag"
 	"fmt"
 	"log"
+	"os"
 
+	"github.com/joho/godotenv"
 	"github.com/tranvux/draft-go/cmd/router"
 	"github.com/tranvux/draft-go/internal/model"
 	"github.com/tranvux/draft-go/internal/seed"
@@ -12,6 +14,11 @@ import (
 )
 
 func main() {
+	// load env
+	if err := godotenv.Load(); err != nil {
+		log.Fatal("main: cannot load .env file", err)
+	}
+
 	// get db
 	db := database.Connect()
 
@@ -47,5 +54,5 @@ func main() {
 	}
 
 	r := router.Setup(db)
-	r.Run(":8080")
+	r.Run(os.Getenv("SERVER_PORT"))
 }
