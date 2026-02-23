@@ -11,9 +11,8 @@ import (
 )
 
 func Connect() *gorm.DB {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("pkg Connect: failed load .env file")
+	if err := godotenv.Load(); err != nil {
+		log.Println("No .env file found, using system environment variables")
 	}
 	dsn := fmt.Sprintf("host=%s user=%s password=%s dbname=%s port=%s sslmode=%s",
 		os.Getenv("DB_HOST"),
