@@ -1,7 +1,7 @@
 package seed
 
 import (
-	"github.com/tranvux/learn-structs/internal/model"
+	"github.com/tranvux/draft-go/internal/model"
 	"gorm.io/gorm"
 )
 
@@ -14,8 +14,8 @@ func Run(db *gorm.DB) {
 		{Name: "baohuy", Email: "baohuy@example.com"},
 	}
 	// db.Create(&users)
-	for _, u := range users {
-		db.Where(model.User{Email: u.Email}).FirstOrCreate(&u)
+	for i := range users {
+		db.Where(model.User{Email: users[i].Email}).FirstOrCreate(&users[i])
 	}
 
 	// 2. create tag
@@ -26,8 +26,8 @@ func Run(db *gorm.DB) {
 		{Name: "docker"},
 	}
 	// db.Create(&tags)
-	for _, t := range tags {
-		db.Where(model.Tag{Name: t.Name}).FirstOrCreate(&t)
+	for i := range tags {
+		db.Where(model.Tag{Name: tags[i].Name}).FirstOrCreate(&tags[i])
 	}
 
 	// 3. create post & assign tag (many2many)

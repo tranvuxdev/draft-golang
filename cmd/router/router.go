@@ -2,9 +2,9 @@ package router
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/tranvux/learn-structs/internal/handler"
-	"github.com/tranvux/learn-structs/internal/repository"
-	"github.com/tranvux/learn-structs/internal/usecase"
+	"github.com/tranvux/draft-go/internal/handler"
+	"github.com/tranvux/draft-go/internal/repository"
+	"github.com/tranvux/draft-go/internal/usecase"
 	"gorm.io/gorm"
 )
 
@@ -16,7 +16,7 @@ func Setup(db *gorm.DB) *gin.Engine {
 	userRepo := repository.NewUserRepository(db)
 
 	// construct usecase
-	postUsecase := usecase.NewPostUsecase(postRepo)
+	postUsecase := usecase.NewPostUsecase(postRepo, userRepo)
 	userUsecase := usecase.NewUserUsecase(userRepo)
 
 	// constructor handler

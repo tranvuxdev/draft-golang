@@ -4,15 +4,16 @@ package handler
 import (
 	"context"
 	"net/http"
+	"sync"
 	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	"github.com/tranvux/learn-structs/internal/handler/dto"
-	"github.com/tranvux/learn-structs/internal/handler/helper"
-	"github.com/tranvux/learn-structs/internal/model"
-	"github.com/tranvux/learn-structs/internal/usecase"
-	"github.com/tranvux/learn-structs/pkg/apperror"
+	"github.com/tranvux/draft-go/internal/handler/dto"
+	"github.com/tranvux/draft-go/internal/handler/helper"
+	"github.com/tranvux/draft-go/internal/model"
+	"github.com/tranvux/draft-go/internal/usecase"
+	"github.com/tranvux/draft-go/pkg/apperror"
 )
 
 type PostHandler struct {
@@ -29,10 +30,20 @@ func (h *PostHandler) GetAll(c *gin.Context) {
 	defer cancel()
 
 	posts, _ := h.usecase.GetAll(ctx)
+
+	// for i, p := range posts {
+	// 	responses[i] = helper.ToPostResponse(&p)
+	// }
 	responses := make([]dto.PostResponse, len(posts))
+	var wg sync.WaitGroup
 	for i, p := range posts {
-		responses[i] = helper.ToPostResponse(&p)
+		wg.Add(1)
+		go func(idx int, post model.Post) {
+			defer wg.Done()
+			responses[idx] = helper.ToPostResponse(&post)
+		}(i, p)
 	}
+	wg.Wait() // đợi tất cả goroutines xong trước khi response
 
 	c.JSON(http.StatusOK, responses)
 }

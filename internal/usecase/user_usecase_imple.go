@@ -4,8 +4,8 @@ import (
 	"context"
 
 	"github.com/google/uuid"
-	"github.com/tranvux/learn-structs/internal/model"
-	"github.com/tranvux/learn-structs/internal/repository"
+	"github.com/tranvux/draft-go/internal/model"
+	"github.com/tranvux/draft-go/internal/repository"
 )
 
 type userUsecase struct {

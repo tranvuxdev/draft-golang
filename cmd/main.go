@@ -5,10 +5,10 @@ import (
 	"fmt"
 	"log"
 
-	"github.com/tranvux/learn-structs/cmd/router"
-	"github.com/tranvux/learn-structs/internal/model"
-	"github.com/tranvux/learn-structs/internal/seed"
-	"github.com/tranvux/learn-structs/pkg/database"
+	"github.com/tranvux/draft-go/cmd/router"
+	"github.com/tranvux/draft-go/internal/model"
+	"github.com/tranvux/draft-go/internal/seed"
+	"github.com/tranvux/draft-go/pkg/database"
 )
 
 func main() {

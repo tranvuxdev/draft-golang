@@ -1,4 +1,4 @@
-module github.com/tranvux/learn-structs
+module github.com/tranvux/draft-go
 
 go 1.25.0
 

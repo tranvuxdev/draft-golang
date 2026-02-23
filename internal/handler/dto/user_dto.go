@@ -1,4 +1,4 @@
-package handler
+package dto
 
 type CreateUserInput struct {
 	Name  string `json:"name" binding:"required,min=3,max=255"`

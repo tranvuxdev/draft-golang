@@ -1,8 +1,8 @@
 package helper
 
 import (
-	"github.com/tranvux/learn-structs/internal/handler/dto"
-	"github.com/tranvux/learn-structs/internal/model"
+	"github.com/tranvux/draft-go/internal/handler/dto"
+	"github.com/tranvux/draft-go/internal/model"
 )
 
 // helper

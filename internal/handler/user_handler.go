@@ -7,10 +7,10 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/google/uuid"
-	"github.com/tranvux/learn-structs/internal/handler/dto"
-	"github.com/tranvux/learn-structs/internal/model"
-	"github.com/tranvux/learn-structs/internal/usecase"
-	"github.com/tranvux/learn-structs/pkg/apperror"
+	"github.com/tranvux/draft-go/internal/handler/dto"
+	"github.com/tranvux/draft-go/internal/model"
+	"github.com/tranvux/draft-go/internal/usecase"
+	"github.com/tranvux/draft-go/pkg/apperror"
 )
 
 type UserHandler struct {

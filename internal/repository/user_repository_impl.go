@@ -5,8 +5,8 @@ import (
 	"errors"
 
 	"github.com/google/uuid"
-	"github.com/tranvux/learn-structs/internal/model"
-	"github.com/tranvux/learn-structs/pkg/apperror"
+	"github.com/tranvux/draft-go/internal/model"
+	"github.com/tranvux/draft-go/pkg/apperror"
 	"gorm.io/gorm"
 )
 
@@ -29,7 +29,7 @@ func (r *userRepository) FindAll(ctx context.Context) ([]model.User, error) {
 
 func (r *userRepository) FindByID(ctx context.Context, id uuid.UUID) (*model.User, error) {
 	var user model.User
-	result := r.db.WithContext(ctx).Find(&user, "id=?", id)
+	result := r.db.WithContext(ctx).First(&user, "id=?", id)
 	if errors.Is(result.Error, gorm.ErrRecordNotFound) {
 		return nil, apperror.ErrNotFound
 	}
